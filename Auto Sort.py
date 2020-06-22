@@ -45,7 +45,9 @@ class AutoSort:
         # Begin monitoring the file directory
         self.Watch()
         
-    def Watch(self):        # Directory Monitoring Function
+    def Watch(self):
+        # Modified from a script on Tim Golden's Website
+        # http://timgolden.me.uk/python/win32_how_do_i/watch_directory_for_changes.html
         before = dict([(f, None) for f in os.listdir(self.target_path)])
         while 1:
             time.sleep(10)
