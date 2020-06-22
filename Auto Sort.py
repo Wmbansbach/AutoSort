@@ -1,8 +1,7 @@
 # Auto Sort Utility
 #--------------------------------------------------
 # To Do
-# 1. Add logging for events, dates, and times
-# 2. 
+# 1. Files that do not match can be placed in a Needs Checking file? (Query Method)
 #--------------------------------------------------
 # Change Log:
 # * 6/22/2020 - Finished initial concept design
@@ -11,8 +10,7 @@
 # Known Issues:
 # 1. The Query method catches any "extension" longer than 4 chars
 #       * This fix is not tested yet
-# 2. Files that do not match can be placed in a Needs Checking file? (Query Method)
-# 3. Application will crash if a pickle file is not found and sorted directories already exist
+# 2. Application will crash if a pickle file is not found and sorted directories already exist
 
 _author_ = "WmBansbach"
 
