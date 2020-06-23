@@ -22,11 +22,12 @@
 #     extensions list. Solves edge-case where there is no
 #     pickle file, but the tp as already been sorted.
 #   - Added dynamic pathing, as well as, argument for
-#     selecting different paths upon object instantiation.
-#   - 
+#     dynamic pathing upon object instantiation.
+# * 6/23/2020
+#   - Updated comments
 #--------------------------------------------------
 # Known Issues:
-#
+# 1. Will not handle extensions longer than four chars (.torrent, .vbox-extpack)
 #--------------------------------------------------
 
 _author_ = "WmBansbach"
@@ -38,7 +39,7 @@ from os import path
 class AutoSort:
     
     def __init__(self, fresh = False, target_path = None):
-        # Load initial parameters
+        # Load initial values
         self.target_path = path.join(os.environ['HOME'], 'Downloads')
         if target_path != None:
             self.target_path = target_path
@@ -51,7 +52,8 @@ class AutoSort:
                             level = logging.INFO,
                             datefmt='%d-%b-%y %H:%M:%S')
         
-        if os.path.exists(self.ext_repo):       # Load the extensions file
+        # Load the extensions file. Runs the Populate function first in some cases
+        if os.path.exists(self.ext_repo):       
             with open(self.ext_repo, 'rb') as file:
                 self.extensions = pickle.load(file)
         else:
@@ -81,7 +83,7 @@ class AutoSort:
                 self.Query(added)
             before = after            
 
-    # Sorter utility which can be called independently of the automated watcher.
+    # Standalone sorting utility which can be called independently of the watcher.
     def Cleanup(self):
         # Update Log
         logging.warning('Directory Cleanup Initiated')
@@ -92,7 +94,8 @@ class AutoSort:
         pfiles = dict
         for i in nfiles:
             trunc = path.splitext(i)[1]
-            if trunc == "" or len(trunc) > 4:
+            # Passes folders that are not exts
+            if trunc == "" or len(trunc) > 4:    
                 continue
             if trunc[1:] in self.extensions:
                 self.Distribute(trunc[1:], i)
@@ -112,7 +115,8 @@ class AutoSort:
     def Update(self):       
         with open(self.ext_repo, 'wb') as file:
             pickle.dump(self.extensions, file)
-    # Update new extensions list in some cases
+            
+    # Populate a new extensions list. (For some cases)
     def Populate(self):
         for f in os.listdir(self.target_path):
             if len(f) <= 4:
