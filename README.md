@@ -1,2 +1,2 @@
 # AutoSort
-Directory Sorting Utility
+Sorts a targeted directory by file extension
