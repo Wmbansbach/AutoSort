@@ -1,6 +1,7 @@
 # Auto Sort Utility
 --------------------------------------------------
-# Synopsis: Sorts a targeted directory by file extension
+# Synopsis: 
+* Sorts a targeted directory by file extension
 --------------------------------------------------
 # Documentation:
 * Parameters
