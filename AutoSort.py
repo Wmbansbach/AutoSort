@@ -37,6 +37,8 @@
 #   - Made it work
 #   - Updated logging information and events
 #   - Added synopsis section
+# * 10/19/2021
+#   - Prevent .ini files from being queried and distributed
 #
 #--------------------------------------------------
 # Known Issues:
@@ -120,7 +122,7 @@ class AutoSort:
         for i in nfiles:
             ext = path.splitext(i)[1]
             # Passes folders and files with larger exts
-            if ext == "" or len(ext[1:]) > 4:    
+            if ext == "" or len(ext[1:]) > 4 or ext == '.ini':    
                 continue
             # Folder already exists for file
             elif ext in self.extensions:
